@@ -81,7 +81,7 @@ impl CsrOptions {
         })
     }
 
-    #[cfg(feature = "tls-openssl")]
+    #[cfg(any(feature = "tls-openssl", feature = "tls-openssl-oqs"))]
     pub fn generate(&self) -> Result<CertSign, Error> {
         use openssl::ec::{EcGroup, EcKey};
         use openssl::hash::MessageDigest;

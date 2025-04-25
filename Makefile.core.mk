@@ -7,6 +7,8 @@ else ifeq ($(TLS_MODE), aws-lc)
 	FEATURES:=--no-default-features -F tls-aws-lc
 else ifeq ($(TLS_MODE), openssl)
 	FEATURES:=--no-default-features -F tls-openssl
+else ifeq ($(TLS_MODE), openssl-oqs)
+	FEATURES:=--no-default-features -F tls-openssl-oqs
 endif
 
 test:

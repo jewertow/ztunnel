@@ -90,6 +90,22 @@ pub(super) fn provider() -> Arc<CryptoProvider> {
     })
 }
 
+#[cfg(feature = "tls-openssl-oqs")]
+pub(super) fn provider() -> Arc<CryptoProvider> {
+    use rustls_liboqs::X25519MLKEM768;
+    use rustls_openssl::custom_provider;
+
+    openssl::provider::Provider::load(None, "default")
+        .expect("failed to load default provider");
+    openssl::provider::Provider::load(None, "oqsprovider")
+        .expect("failed to load oqs-provider");
+
+    Arc::new(custom_provider(vec![
+            rustls_openssl::cipher_suite::TLS13_AES_256_GCM_SHA384,
+            rustls_openssl::cipher_suite::TLS13_AES_128_GCM_SHA256,
+        ], vec![X25519MLKEM768]))
+}
+
 #[derive(thiserror::Error, Debug)]
 pub enum TlsError {
     #[error("tls handshake error: {0:?}")]

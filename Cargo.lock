@@ -2987,6 +2987,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "rustls-liboqs"
+version = "0.1.0"
+source = "git+https://github.com/tofay/rustls-liboqs#0d780c39c615b1ad4f8710237adf2872b8912416"
+dependencies = [
+ "foreign-types 0.3.2",
+ "openssl",
+ "openssl-sys",
+ "pkg-config",
+ "rustls",
+ "zeroize",
+]
+
+[[package]]
 name = "rustls-native-certs"
 version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4527,6 +4540,7 @@ dependencies = [
  "ring",
  "rustc_version",
  "rustls",
+ "rustls-liboqs",
  "rustls-native-certs",
  "rustls-openssl",
  "rustls-pemfile",

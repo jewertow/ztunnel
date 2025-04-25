@@ -54,7 +54,7 @@ pub enum Error {
     SslError(#[from] boring::error::ErrorStack),
 
     #[error("invalid operation: {0:?}")]
-    #[cfg(feature = "tls-openssl")]
+    #[cfg(any(feature = "tls-openssl", feature = "tls-openssl-oqs"))]
     SslError(#[from] openssl::error::ErrorStack),
 
     #[error("invalid certificate generation: {0:?}")]
