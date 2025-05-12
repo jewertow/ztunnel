@@ -78,7 +78,7 @@ pub(super) fn provider() -> Arc<CryptoProvider> {
     };
 
     let kx_groups = match std::env::var("COMPLIANCE_POLICY").as_deref() {
-        Ok("post-quantum-safe") => Some(vec![rustls::crypto::aws_lc_rs::kx_group::X25519MLKEM768]),
+        Ok("post-quantum-safe-kx") => Some(vec![rustls::crypto::aws_lc_rs::kx_group::X25519MLKEM768]),
         _ => None,
     };
     if let Some(kx) = kx_groups {
